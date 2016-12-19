@@ -1,0 +1,84 @@
+<html>
+<head>
+<style>
+#container {
+  width: 626px;
+}
+#tiles {
+  background-image: url(binary-numbers.jpg);
+  height: 162px;
+  overflow: hidden;
+  padding: 18px;
+}
+.tile {
+  float: left;
+  margin-left: 10px;
+  width: 110px;
+  text-align: center;
+}
+.tile .block {
+  background-color: black;
+  height: 143px;
+  opacity: .7;
+}
+.on .block {
+  opacity: 0;
+}
+#t4 {
+  width: 95px;
+}
+#t2 {
+  width: 102px;
+}
+#t1 {
+  width: 95px;
+}
+#total {
+  font-size: 100px;
+  text-align: center;
+}
+.binary-status {
+  font-size: 38px;
+}
+</style>
+</head>
+<body>
+
+<div id="container">
+<div id="tiles">
+  <div class="tile" data-val="16" id="t16"><div class="block"></div><div class="binary-status">0</div></div>
+  <div class="tile" data-val="8" id="t8"><div class="block"></div><div class="binary-status">0</div></div>
+  <div class="tile" data-val="4" id="t4"><div class="block"></div><div class="binary-status">0</div></div>
+  <div class="tile" data-val="2" id="t2"><div class="block"></div><div class="binary-status">0</div></div>
+  <div class="tile" data-val="1" id="t1"><div class="block"></div><div class="binary-status">0</div></div>
+</div>
+<div id="total">0</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+  let addTiles = function() {
+    let total = 0;
+    $('.on').each(function() {
+      total += $(this).data('val');
+    });
+    $('#total').text(total);
+  };
+
+  $('.tile').click(function() {
+    let $this = $(this);
+    let $stat = $this.find('.binary-status');
+    let bval = $stat.text();
+    if (+bval) {
+      $stat.text(0);
+    }
+    else {
+      $stat.text(1);
+    }
+    $this.toggleClass('on');
+    addTiles();
+  });
+</script>
+
+</body>
+</html>
